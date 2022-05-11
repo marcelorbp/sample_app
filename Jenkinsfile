@@ -10,8 +10,8 @@ pipeline {
         stage('Checkout') {
             steps{
                 echo 'clone repo'
-                sh 'rm -fr test_web'
-                sh 'git clone https://github.com/renatasilva11/test_web.git'
+                sh 'rm -fr sample_app'
+                sh 'git clone https://github.com/renatasilva11/sample_app.git'
             }
         }
         stage('Build') {
@@ -21,7 +21,7 @@ pipeline {
         }
         stage('Test') {
             steps {
-                sh 'node test'
+                echo 'Running Tests!'
             }
         }
         stage('Deploy') {
