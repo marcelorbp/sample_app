@@ -7,13 +7,7 @@ pipeline {
     }
 
     stages{
-        stage('Checkout') {
-            steps{
-                echo 'clone repo'
-                sh 'rm -fr sample_app'
-                sh 'git clone https://github.com/renatasilva11/sample_app.git'
-            }
-        }
+       
         stage('Build') {
             steps {
                 sh 'npm install'
