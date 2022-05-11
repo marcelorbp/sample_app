@@ -1,11 +1,6 @@
 #!/usr/bin/env groovy
 pipeline {
-   agent {
-        docker {
-            image 'node:lts-bullseye-slim' 
-            args '-p 3000:3000' 
-        }
-   }
+  agent { any { image 'node:12.16.2' args '-p 3000:3000' } }
     tools {
         nodejs "NODE"
     }
