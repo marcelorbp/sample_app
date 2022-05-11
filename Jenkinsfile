@@ -9,7 +9,7 @@ pipeline {
        
         stage('Build') {
             steps {
-                sh 'npm install'
+                sh 'npm --production=false install'
             }
         }
         stage('Test') {
