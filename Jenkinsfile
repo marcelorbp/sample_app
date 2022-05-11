@@ -5,7 +5,7 @@ pipeline {
         stage('clone repo') {
             steps {
                 echo 'clone repo'
-                sh 'rm -fr 'sample_app'
+                sh 'rm -fr sample_app'
                 sh 'git clone https://github.com/renatasilva11/sample_app.git'
             }
         }
