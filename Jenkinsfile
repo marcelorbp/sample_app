@@ -9,7 +9,7 @@ pipeline {
     stages{
         stage('Checkout') {
             steps{
-                 git changelog: false, poll: false, url: 'https://github.com/renatasilva11/sample_app.git'
+                git changelog: false, poll: false, url: 'https://github.com/renatasilva11/sample_app.git'
             }
         }
         stage('Build') {
@@ -24,7 +24,7 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                echo 'Deploy somewhere!!'
+                echo 'Deploy somewhere!'
             }
         }
     }
