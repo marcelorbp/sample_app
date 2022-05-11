@@ -20,13 +20,13 @@ pipeline {
         stage('connect') {
         steps {
           sshagent(credentials: ['webfiles']) {
-           echo 'Hello 4'
+           echo 'Hello 3'
       }
     }
         }
-        stage('3') {
+        stage('4') {
             steps {
-                echo 'Hello 3'
+                echo 'Hello 4'
             }
         }
     }  
