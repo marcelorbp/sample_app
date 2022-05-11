@@ -9,7 +9,9 @@ pipeline {
     stages{
         stage('Checkout') {
             steps{
-                 git changelog: false, poll: false, url: 'https://github.com/renatasilva11/sample_app.git'
+                echo 'clone repo'
+                sh 'rm -fr test_web'
+                sh 'git clone https://github.com/renatasilva11/test_web.git'
             }
         }
         stage('Build') {
