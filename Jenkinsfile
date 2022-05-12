@@ -1,26 +1,34 @@
 #!/usr/bin/env groovy
 pipeline {
-  agent { any { image 'node:12.16.2' args '-p 3000:3000' } }
-    tools {
-        nodejs "NODE"
+  agent any
+  def app
+  
+    stage('Clone repository') {
+        /* Let's make sure we have the repository cloned to our workspace */
+        checkout scm
     }
-
-    stages{
        
-        stage('Build') {
-            steps {
-                sh 'npm install --force'
-            }
-        }
-        stage('Test') {
+    stage('Build image') {
+        /* This builds the actual image; synonymous to
+         * docker build on the command line */
+
+        app = docker.build("sampleapp")
+    } 
+  
+    stage('Test') {
             steps {
                 echo 'Running Tests!'
             }
         }
-        stage('Deploy') {
-            steps {
-                echo 'Deploy somewhere!'
-            }
+
+    stage('Push image') {
+        /* Finally, we'll push the image with two tags:
+         * First, the incremental build number from Jenkins
+         * Second, the 'latest' tag.
+         * Pushing multiple tags is cheap, as all the layers are reused. */
+        docker.withRegistry('https://registry.hub.docker.com', 'docker-registry') {
+            app.push("${env.BUILD_NUMBER}")
+            app.push("latest")
         }
     }
 }
